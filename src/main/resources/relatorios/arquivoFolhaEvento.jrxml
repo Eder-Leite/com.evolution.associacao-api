@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2019-06-22T10:34:59 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="arquivoFolhaEvento" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Key" uuid="e5a8eeee-301d-4bcb-856a-9d66b36de605">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Evolution"/>
+	<parameter name="PERIODO" class="java.lang.Integer"/>
+	<parameter name="EMPRESA" class="java.lang.Integer"/>
+	<parameter name="DATA_PAGAMENTO" class="java.util.Date"/>
+	<parameter name="EVENTO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT *
+  FROM FAT_VARQUIVO_FOLHA A
+ WHERE NCODIEMPRE = $P{EMPRESA} 
+   AND CCODIEVENT = $P{EVENTO} 
+   AND NCODIPERIO = FAT_FARQUIVO_FOLHA($P{DATA_PAGAMENTO}, $P{PERIODO})]]>
+	</queryString>
+	<field name="TEXTO" class="java.lang.String"/>
+	<field name="NCODIPERIO" class="java.math.BigDecimal"/>
+	<field name="NCODIEMPRE" class="java.math.BigDecimal"/>
+	<field name="CCODIEVENT" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="1" width="555" height="19" uuid="71d32c9e-5184-4daa-9fc1-b6ad620aa455"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TEXTO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

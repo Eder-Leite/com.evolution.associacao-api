@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2019-06-22T10:08:01 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioNotas" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d3fe0549-fd2c-4a94-ba3d-fbf46f8ed678">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Evolution"/>
+	<parameter name="EMPRESA" class="java.lang.Integer"/>
+	<parameter name="PERIODO" class="java.lang.Integer"/>
+	<parameter name="DESPESA" class="java.lang.Integer"/>
+	<parameter name="EVENTO" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT *
+  FROM FAT_VIMPRESSAO_RELATORIO_NOTAS A
+ WHERE A.NCODIEMPRE = $P{EMPRESA}
+   AND A.NCODIPERIO = $P{PERIODO}
+   AND A.NCODITPDES = $P{DESPESA}
+   AND A.NCODIEVENT = $P{EVENTO}]]>
+	</queryString>
+	<field name="NCODIEMPRE" class="java.math.BigDecimal"/>
+	<field name="EMPRESA" class="java.lang.String"/>
+	<field name="FUNCIONARIO" class="java.lang.String"/>
+	<field name="NVALO_NOTA" class="java.math.BigDecimal"/>
+	<field name="VALOR" class="java.lang.String"/>
+	<field name="NCODIPERIO" class="java.math.BigDecimal"/>
+	<field name="PERIODO" class="java.lang.String"/>
+	<field name="DESPESA" class="java.lang.String"/>
+	<field name="NCODITPDES" class="java.math.BigDecimal"/>
+	<field name="NCODIEVENT" class="java.math.BigDecimal"/>
+	<field name="EVENTO" class="java.lang.String"/>
+	<field name="DESCRICAO" class="java.lang.String"/>
+	<field name="ASSOCIACAO" class="java.lang.String"/>
+	<field name="HORA" class="java.lang.String"/>
+	<field name="LOGO" class="java.sql.Blob"/>
+	<variable name="TOTAL" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{NVALO_NOTA}]]></variableExpression>
+	</variable>
+	<variable name="REPORT_PAGE" class="java.lang.Integer" resetType="None" incrementType="Page">
+		<variableExpression><![CDATA[$V{PAGE_NUMBER}]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="113" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField>
+				<reportElement positionType="Float" x="11" y="99" width="530" height="14" uuid="ed9755c5-f3e2-45a9-a7c0-a222885cab5f">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DESCRICAO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="58" width="357" height="14" uuid="31704a38-fac4-4d7e-a0c6-5154f24fef9a">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PERIODO}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center">
+				<reportElement positionType="Float" x="4" y="18" width="78" height="59" uuid="65dc967a-22c7-474e-bff1-b8a087058398"/>
+				<imageExpression><![CDATA[$F{LOGO}.getBinaryStream()]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="84" y="21" width="468" height="20" uuid="ad0eb7ec-bb07-4c1b-8a60-4a3be7640540">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ASSOCIACAO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<staticText>
+				<reportElement x="11" y="3" width="100" height="14" uuid="35c2d101-e02e-47b2-ad02-c6f14975dce0">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Funcionário]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="457" y="3" width="85" height="14" uuid="3b3cd4f0-d3e2-45c0-97c1-4f51b56e1836">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField>
+				<reportElement x="11" y="1" width="439" height="14" uuid="4861cc42-9ce2-4297-ad2f-b7ab342154d3">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FUNCIONARIO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="457" y="1" width="85" height="14" uuid="7c28e0b5-191b-4e2b-8535-4335ff87cf45">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VALOR}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="16">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField>
+				<reportElement positionType="Float" x="11" y="1" width="439" height="14" uuid="d1965af3-29a6-497d-a2ab-e7330acac8a8">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HORA}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto">
+				<reportElement x="459" y="1" width="82" height="14" uuid="81688ea5-fe99-488a-8035-4cf1eab26ac7">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página "+$V{REPORT_PAGE} +" /" +$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="30" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField>
+				<reportElement x="380" y="12" width="160" height="15" uuid="6cb04db3-1fee-4884-85a4-7abcff855136">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Valor Total " + new java.text.DecimalFormat("#,##0.00").format($V{TOTAL})]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2019-06-22T10:11:37 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="posicaoSintetica" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ad259718-fcb0-41d5-9742-7f1dde615065">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Evolution"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab_CH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="nova" uuid="d73f63dc-726e-4e03-b966-f18ac60e4808">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Evolution"/>
+		<parameter name="PERIODO" class="java.lang.Integer">
+			<parameterDescription><![CDATA[]]></parameterDescription>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT *
+  FROM FAT_VIMPRESSAO_SINTETICA_EMPRE A
+ WHERE A.NCODIEMPRE = 1
+   AND A.NCODIPERIO = $P{PERIODO}]]>
+		</queryString>
+		<field name="NCODIEMPRE" class="java.math.BigDecimal"/>
+		<field name="EVENTO" class="java.lang.String"/>
+		<field name="DESCRICAO" class="java.lang.String"/>
+		<field name="VALOR" class="java.math.BigDecimal"/>
+		<field name="EMPRESA" class="java.lang.String"/>
+		<field name="NCODIPERIO" class="java.math.BigDecimal"/>
+		<field name="PERIODO" class="java.lang.String"/>
+		<group name="EVENTO">
+			<groupExpression><![CDATA[$F{EVENTO}]]></groupExpression>
+		</group>
+		<group name="DESCRICAO">
+			<groupExpression><![CDATA[$F{DESCRICAO}]]></groupExpression>
+		</group>
+		<group name="VALOR">
+			<groupExpression><![CDATA[$F{VALOR}]]></groupExpression>
+		</group>
+		<group name="EMPRESA">
+			<groupExpression><![CDATA[$F{EMPRESA}]]></groupExpression>
+		</group>
+		<group name="PERIODO">
+			<groupExpression><![CDATA[$F{PERIODO}]]></groupExpression>
+		</group>
+	</subDataset>
+	<subDataset name="novaTotal" uuid="05c20aaf-125c-40dc-9281-cd89a65dbf9e">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Evolution"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="PERIODO" class="java.lang.Integer"/>
+		<queryString>
+			<![CDATA[SELECT SUM(A.VALOR) VALOR
+  FROM FAT_VIMPRESSAO_SINTETICA_EMPRE A
+ WHERE A.NCODIEMPRE = 1
+   AND A.NCODIPERIO = $P{PERIODO}]]>
+		</queryString>
+		<field name="VALOR" class="java.math.BigDecimal"/>
+	</subDataset>
+	<subDataset name="cocafe" uuid="ef93cb24-0739-4909-a6d8-a7e16a19b651">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Evolution"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="PERIODO" class="java.lang.Integer"/>
+		<queryString>
+			<![CDATA[SELECT *
+  FROM FAT_VIMPRESSAO_SINTETICA_EMPRE A
+ WHERE A.NCODIEMPRE = 4
+   AND A.NCODIPERIO = $P{PERIODO}]]>
+		</queryString>
+		<field name="NCODIEMPRE" class="java.math.BigDecimal"/>
+		<field name="EVENTO" class="java.lang.String"/>
+		<field name="DESCRICAO" class="java.lang.String"/>
+		<field name="VALOR" class="java.math.BigDecimal"/>
+		<field name="EMPRESA" class="java.lang.String"/>
+		<field name="NCODIPERIO" class="java.math.BigDecimal"/>
+		<field name="PERIODO" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="cocafeTotal" uuid="f9a2dd79-6e90-427a-8ed6-2eb9e9ac4327">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Evolution"/>
+		<parameter name="PERIODO" class="java.lang.Integer"/>
+		<queryString>
+			<![CDATA[SELECT SUM(A.VALOR) VALOR
+  FROM FAT_VIMPRESSAO_SINTETICA_EMPRE A
+ WHERE A.NCODIEMPRE = 4
+   AND A.NCODIPERIO = $P{PERIODO}]]>
+		</queryString>
+		<field name="VALOR" class="java.math.BigDecimal"/>
+		<group name="VALOR">
+			<groupExpression><![CDATA[$F{VALOR}]]></groupExpression>
+		</group>
+	</subDataset>
+	<subDataset name="lanchonete" uuid="d962be8f-f572-4c8f-8f2d-308303fcc642">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Evolution"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="PERIODO" class="java.lang.Integer"/>
+		<queryString>
+			<![CDATA[SELECT *
+  FROM FAT_VIMPRESSAO_SINTETICA_EMPRE A
+ WHERE A.NCODIEMPRE = 99
+   AND A.NCODIPERIO = $P{PERIODO}]]>
+		</queryString>
+		<field name="NCODIEMPRE" class="java.math.BigDecimal"/>
+		<field name="EVENTO" class="java.lang.String"/>
+		<field name="DESCRICAO" class="java.lang.String"/>
+		<field name="VALOR" class="java.math.BigDecimal"/>
+		<field name="EMPRESA" class="java.lang.String"/>
+		<field name="NCODIPERIO" class="java.math.BigDecimal"/>
+		<field name="PERIODO" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="lanchoneteTotal" uuid="260e975f-963d-4b2c-b4cd-03a894610155">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Evolution"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="PERIODO" class="java.lang.Integer"/>
+		<queryString>
+			<![CDATA[SELECT SUM(A.VALOR) VALOR
+  FROM FAT_VIMPRESSAO_SINTETICA_EMPRE A
+ WHERE A.NCODIEMPRE = 99
+   AND A.NCODIPERIO = $P{PERIODO}]]>
+		</queryString>
+		<field name="VALOR" class="java.math.BigDecimal"/>
+	</subDataset>
+	<parameter name="PERIODO" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT * FROM FAT_VIMPRESSAO_SINTETICA A WHERE A.NCODIPERIO = $P{PERIODO}]]>
+	</queryString>
+	<field name="NCODIPERIO" class="java.math.BigDecimal"/>
+	<field name="DESCRICAO" class="java.lang.String"/>
+	<field name="PERIODO" class="java.lang.String"/>
+	<field name="ASSOCIACAO" class="java.lang.String"/>
+	<field name="LOGO" class="java.sql.Blob"/>
+	<group name="lanchonete">
+		<groupFooter>
+			<band height="16">
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				<componentElement>
+					<reportElement x="3" y="1" width="551" height="15" uuid="f7d82ffb-42e5-4651-8273-9b24532e8011">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+						<datasetRun subDataset="lanchonete" uuid="5b57d990-a7e4-482f-a837-c3d9f7ba7901">
+							<datasetParameter name="PERIODO">
+								<datasetParameterExpression><![CDATA[$P{PERIODO}]]></datasetParameterExpression>
+							</datasetParameter>
+							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						</datasetRun>
+						<jr:listContents height="15" width="551">
+							<textField>
+								<reportElement x="438" y="1" width="56" height="12" uuid="68863f64-bdd8-498c-be4b-b6d60ef394e5">
+									<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+								</reportElement>
+								<textElement textAlignment="Right">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($F{VALOR})]]></textFieldExpression>
+							</textField>
+							<textField>
+								<reportElement x="497" y="1" width="52" height="12" uuid="2c1230ec-8b17-4339-9077-8e7cc5b46fa2">
+									<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+								</reportElement>
+								<textElement textAlignment="Right">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PERIODO}]]></textFieldExpression>
+							</textField>
+							<textField>
+								<reportElement x="50" y="1" width="282" height="12" uuid="3e480a0e-14dc-49f3-b0f7-65a149ca07d7">
+									<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+								</reportElement>
+								<textElement textAlignment="Left">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{DESCRICAO}]]></textFieldExpression>
+							</textField>
+							<textField>
+								<reportElement x="335" y="1" width="100" height="12" uuid="8b50d0b9-c123-4dce-ab6c-bee17d2bef4f">
+									<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+								</reportElement>
+								<textElement textAlignment="Left">
+									<font fontName="SansSerif" size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{EMPRESA}]]></textFieldExpression>
+							</textField>
+							<textField>
+								<reportElement x="1" y="1" width="46" height="12" uuid="6898dece-b8ad-47b7-b747-616739af10e2">
+									<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+								</reportElement>
+								<textElement textAlignment="Center">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{EVENTO}]]></textFieldExpression>
+							</textField>
+						</jr:listContents>
+					</jr:list>
+				</componentElement>
+			</band>
+			<band height="20">
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				<componentElement>
+					<reportElement x="397" y="1" width="100" height="15" uuid="126ecd27-b0cf-4879-8894-f6a5fee231e9">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+						<datasetRun subDataset="lanchoneteTotal" uuid="870673b7-c52d-4817-a379-e0ed325f007f">
+							<datasetParameter name="PERIODO">
+								<datasetParameterExpression><![CDATA[$P{PERIODO}]]></datasetParameterExpression>
+							</datasetParameter>
+							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						</datasetRun>
+						<jr:listContents height="15" width="100">
+							<textField>
+								<reportElement x="0" y="1" width="100" height="12" uuid="938c58ad-7504-47a4-9a03-deba24dc47a5">
+									<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+								</reportElement>
+								<textElement textAlignment="Right">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[($F{VALOR} !=null)? "Valor Total: " + new java.text.DecimalFormat("#,##0.00").format($F{VALOR}) : ""]]></textFieldExpression>
+							</textField>
+						</jr:listContents>
+					</jr:list>
+				</componentElement>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="Cocafe">
+		<groupFooter>
+			<band height="16">
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				<componentElement>
+					<reportElement x="3" y="1" width="551" height="15" uuid="7bbe7306-3299-454a-9e04-0ff2fe2750ef">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+						<datasetRun subDataset="cocafe" uuid="73f326e0-027a-46f8-881a-328b13730d2f">
+							<datasetParameter name="PERIODO">
+								<datasetParameterExpression><![CDATA[$P{PERIODO}]]></datasetParameterExpression>
+							</datasetParameter>
+							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						</datasetRun>
+						<jr:listContents height="15" width="551">
+							<textField>
+								<reportElement x="438" y="1" width="56" height="12" uuid="953a2040-991a-4739-a31c-6acbff8ea08c">
+									<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+								</reportElement>
+								<textElement textAlignment="Right">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($F{VALOR})]]></textFieldExpression>
+							</textField>
+							<textField>
+								<reportElement x="497" y="1" width="52" height="12" uuid="3d0a7e1b-e16e-40a3-b4e3-33d83c2bc0da">
+									<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+								</reportElement>
+								<textElement textAlignment="Right">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PERIODO}]]></textFieldExpression>
+							</textField>
+							<textField>
+								<reportElement x="50" y="1" width="282" height="12" uuid="4c09fe7d-8ead-4631-9519-9e33b4cd75c7">
+									<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+								</reportElement>
+								<textElement textAlignment="Left">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{DESCRICAO}]]></textFieldExpression>
+							</textField>
+							<textField>
+								<reportElement x="335" y="1" width="100" height="12" uuid="7f1d61b4-7491-4091-8ba3-be0f28686fcc">
+									<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+								</reportElement>
+								<textElement textAlignment="Left">
+									<font fontName="SansSerif" size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{EMPRESA}]]></textFieldExpression>
+							</textField>
+							<textField>
+								<reportElement x="1" y="1" width="46" height="12" uuid="17d18422-28ae-408b-8f2e-f93e77aca723">
+									<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+								</reportElement>
+								<textElement textAlignment="Center">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{EVENTO}]]></textFieldExpression>
+							</textField>
+						</jr:listContents>
+					</jr:list>
+				</componentElement>
+			</band>
+			<band height="25">
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				<componentElement>
+					<reportElement x="397" y="0" width="100" height="15" uuid="d4bc8b9c-0176-4c51-a3f9-3285cdf9745b">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+						<datasetRun subDataset="cocafeTotal" uuid="9fc885a1-2b3a-4a59-a0d6-da1ff78da5bb">
+							<datasetParameter name="PERIODO">
+								<datasetParameterExpression><![CDATA[$P{PERIODO}]]></datasetParameterExpression>
+							</datasetParameter>
+							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						</datasetRun>
+						<jr:listContents height="15" width="100">
+							<textField>
+								<reportElement x="0" y="1" width="100" height="12" uuid="86856ce5-34b6-4eb8-ba4b-76792ed33677">
+									<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+								</reportElement>
+								<textElement textAlignment="Right">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[($F{VALOR} !=null)? "Valor Total: " + new java.text.DecimalFormat("#,##0.00").format($F{VALOR}) : ""]]></textFieldExpression>
+							</textField>
+						</jr:listContents>
+					</jr:list>
+				</componentElement>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="Nova">
+		<groupFooter>
+			<band height="16">
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				<componentElement>
+					<reportElement x="3" y="1" width="551" height="15" uuid="c93f776d-57dd-4821-8860-5cdaf64dffdc">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+						<datasetRun subDataset="nova" uuid="6ed30df4-4b76-4940-8278-b66ba2d89717">
+							<datasetParameter name="PERIODO">
+								<datasetParameterExpression><![CDATA[$P{PERIODO}]]></datasetParameterExpression>
+							</datasetParameter>
+							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						</datasetRun>
+						<jr:listContents height="15" width="551">
+							<textField>
+								<reportElement x="438" y="1" width="56" height="12" uuid="eb223e79-f2e3-4a90-9eac-10fd5fa9890c">
+									<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+								</reportElement>
+								<textElement textAlignment="Right">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($F{VALOR})]]></textFieldExpression>
+							</textField>
+							<textField>
+								<reportElement x="497" y="1" width="52" height="12" uuid="9e50ecbc-d8d5-4e43-8bd9-adbcfedad9ec">
+									<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+								</reportElement>
+								<textElement textAlignment="Right">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PERIODO}]]></textFieldExpression>
+							</textField>
+							<textField>
+								<reportElement x="50" y="1" width="282" height="12" uuid="6fa1da89-bda0-4d7b-b4ed-39e387fc805f">
+									<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+								</reportElement>
+								<textElement textAlignment="Left">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{DESCRICAO}]]></textFieldExpression>
+							</textField>
+							<textField>
+								<reportElement x="335" y="1" width="100" height="12" uuid="9ed9459c-0e73-4da4-a121-7d5291772f98">
+									<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+								</reportElement>
+								<textElement textAlignment="Left">
+									<font fontName="SansSerif" size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{EMPRESA}]]></textFieldExpression>
+							</textField>
+							<textField>
+								<reportElement x="1" y="1" width="46" height="12" uuid="11fcc38c-489d-486d-83e3-39ee6df84fb7">
+									<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+								</reportElement>
+								<textElement textAlignment="Center">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{EVENTO}]]></textFieldExpression>
+							</textField>
+						</jr:listContents>
+					</jr:list>
+				</componentElement>
+			</band>
+			<band height="25">
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				<componentElement>
+					<reportElement x="397" y="1" width="100" height="15" uuid="fd919a7a-ca42-46a2-a7bc-46dc151051be">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+						<datasetRun subDataset="novaTotal" uuid="9c536bb3-09e3-4131-a2ea-33e007275c97">
+							<datasetParameter name="PERIODO">
+								<datasetParameterExpression><![CDATA[$P{PERIODO}]]></datasetParameterExpression>
+							</datasetParameter>
+							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						</datasetRun>
+						<jr:listContents height="15" width="100">
+							<textField>
+								<reportElement x="4" y="1" width="95" height="12" uuid="53bdbe70-4c60-4a60-8dbc-507eb095c5d6">
+									<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+								</reportElement>
+								<textElement textAlignment="Right">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[($F{VALOR} !=null)? "Valor Total: " + new java.text.DecimalFormat("#,##0.00").format($F{VALOR}): ""]]></textFieldExpression>
+							</textField>
+						</jr:listContents>
+					</jr:list>
+				</componentElement>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="100" splitType="Stretch">
+			<image hAlign="Center">
+				<reportElement positionType="Float" x="6" y="12" width="78" height="59" uuid="634faea5-755f-4f09-b3a8-db7a3c170627"/>
+				<imageExpression><![CDATA[$F{LOGO}.getBinaryStream()]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="180" y="70" width="200" height="20" uuid="02c117a5-68f5-4357-bbaf-251a55c502a9"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{PERIODO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="3" y="10" width="550" height="25" uuid="3d17e898-8790-423f-b819-3a0f019df7d2">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ASSOCIACAO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3" y="45" width="550" height="20" uuid="a047b3f9-b049-4f43-be7c-0a1756f5034d">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DESCRICAO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="13">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<staticText>
+				<reportElement x="4" y="1" width="46" height="12" uuid="228575fb-273f-4199-a3c8-3c89516f474b">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Evento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="53" y="1" width="127" height="12" uuid="98b934ed-94fc-4a33-a6cb-4e46faaed8f9">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descrição]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="338" y="1" width="60" height="12" uuid="dad8c2fe-d7ef-4330-8943-d6dda46fecd4">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Empresa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="441" y="1" width="55" height="12" uuid="18d6a6b6-7889-4846-91f5-57c10dae2e4f">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="502" y="1" width="50" height="12" uuid="1d88505f-2dde-4f64-bf33-74cde876cdb9">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Período]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<pageFooter>
+		<band height="15" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField pattern="d &apos;de&apos; MMMM &apos;de&apos; yyyy">
+				<reportElement x="243" y="1" width="139" height="14" uuid="da06f82d-abe9-47b0-aa26-35bd3d8cd516">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="201" y="1" width="40" height="14" uuid="08b3233e-f59b-400a-8750-a945d8674f0f">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Astorga,]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="454" y="1" width="100" height="14" uuid="84ce9099-114f-478c-898f-c17e58c01440"/>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA["Pagina " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
