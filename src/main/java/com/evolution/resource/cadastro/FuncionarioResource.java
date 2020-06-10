@@ -1,5 +1,8 @@
 package com.evolution.resource.cadastro;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +35,6 @@ import com.evolution.repository.cadastro.filter.FuncionarioFilter;
 import com.evolution.repository.cadastro.projection.FuncionarioResumo;
 import com.evolution.service.cadastro.FuncionarioService;
 
-
 @RestController
 @RequestMapping("/funcionarios")
 public class FuncionarioResource {
@@ -45,6 +47,33 @@ public class FuncionarioResource {
 
 	@Autowired
 	private FuncionarioService funcionarioService;
+
+	@GetMapping("/arquivo")
+	@PreAuthorize("hasAnyAuthority('ROLE_USER') and #oauth2.hasScope('read')")
+	public void arquivo(HttpServletResponse response) {
+		try {
+			response.setContentType("text/plain;charset=UTF-8");
+			response.addHeader("Content-Disposition", "attachment; filename=\"ArquivoFuncionario.txt\"");
+			OutputStream outputStream = response.getOutputStream();
+
+			List<String> lista = new ArrayList<>();
+			StringBuffer texto = new StringBuffer();
+
+			lista = funcionarioRepository.arquivoFuncionario();
+
+			if (lista.size() > 0) {
+				for (String arquivo : lista) {
+					texto.append(arquivo + "\n");
+				}
+				outputStream.write(texto.toString().getBytes());
+			}
+
+			outputStream.flush();
+			outputStream.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	@GetMapping("/{id}")
 	@PreAuthorize("hasAnyAuthority('ROLE_USER') and #oauth2.hasScope('read')")
